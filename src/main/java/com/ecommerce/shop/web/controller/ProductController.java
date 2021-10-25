@@ -4,6 +4,7 @@ import com.ecommerce.shop.data.model.Product;
 import com.ecommerce.shop.data.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,5 +34,11 @@ public class ProductController {
     @GetMapping("/{id}")
     public Product getProduct(@PathVariable("id") Long id){
         return productServiceImpl.getProduct(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteProduct(@PathVariable Long id){
+        productServiceImpl.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
